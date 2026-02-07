@@ -15,13 +15,13 @@ using System.Collections.Generic;
 // This attribute tells BepInEx this is a mod. 
 // Format: ("Unique ID", "Display Name", "Version")
 [BepInPlugin("myfirstmod.yapyap.console", "MyYAPYAPMod", "1.0.0")]
-public class MyFirstMod : BaseUnityPlugin
+public class RomajiDisplay : BaseUnityPlugin
 {
     // Awake is called when the mod is first loaded by the game.
     public void Awake()
     {
         // LogInfo sends a message to the BepInEx console
-        Harmony.CreateAndPatchAll(typeof(MyFirstMod).Assembly);
+        Harmony.CreateAndPatchAll(typeof(RomajiDisplay).Assembly);
         Logger.LogInfo("MyYAPYAPMod is enabled.");
     }
 }

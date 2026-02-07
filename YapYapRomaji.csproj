@@ -7,8 +7,8 @@
     <ProjectGuid>{232CA5E3-9626-4ECA-890A-806072A9A406}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>YapYapModTest</RootNamespace>
-    <AssemblyName>YapYapModTest</AssemblyName>
+    <RootNamespace>YapYapRomaji</RootNamespace>
+    <AssemblyName>YapYapRomaji</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -69,7 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyFirstMod.cs" />
+    <Compile Include="RomajiDisplay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
