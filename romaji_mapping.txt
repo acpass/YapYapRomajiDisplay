@@ -1,0 +1,118 @@
+# 罗马音映射配置文件
+# 按 F9 可以在游戏中重新加载此文件
+# 格式: VoiceCommandKey = 显示文本
+
+# 罗马音映射配置文件
+# 格式: VoiceCommandKey = [罗马音]
+# 按 F9 可以在游戏中重新加载此文件
+
+# --- Arcane Spells (奥术) ---
+SPELL_ARC_ASTRAL_EYES = [Toushi]
+SPELL_ARC_BLINK = [Tere-pooto]
+SPELL_ARC_GRAB_ANA = [Gurabu]
+SPELL_ARC_LUX_ANA = [Iru-mina]
+SPELL_ARC_SWAP = [Ire-kae]
+SPELL_ARC_TELE_PORT_ANA = [Jo-shou]
+SPELL_ARC_TELE_PORT_ANA_2 = [Jo-shou]
+SPELL_ARC_TELE_PORT_DOWN = [Shou-jo]
+SPELL_ARC_TRADE_1 = [Ofaa]
+SPELL_ARC_TRADE_2 = [Toreedo]
+
+# --- Basic / Wind Spells (基础/风) ---
+SPELL_BAS_TEMPEST = [Senpuu]
+SPELL_BAS_TORCH = [Toochi]
+SPELL_BAS_UPDOG = [Kyou-fuu]
+SPELL_BAS_VENTO = [Kaze-yobi]
+
+# --- Bless Spells (祝福) ---
+SPELL_BLS_AEGIS = [Shiiru-do]
+SPELL_BLS_BUB_ANA = [Chiyu]
+SPELL_BLS_MERCI = [Maa-shii]
+SPELL_BLS_REVIVE = [Sosei]
+
+# --- Fire Spells (火) ---
+SPELL_FIR_BALLS = [Oni-bi]
+SPELL_FIR_LEGS = [Baku-sou]
+SPELL_FIR_MINE = [Jirai]
+SPELL_FIR_SELF = [Kaen]
+SPELL_FIR_TONGUE = [Magu-ma]
+
+# --- Gross / Poison Spells (毒/恶心) ---
+SPELL_GRS_ACHOO = [Haku-shon]
+SPELL_GRS_FISH_YUK = [Toransu-fisshu]
+SPELL_GRS_PISS_YUK = [Pii-pii]
+SPELL_GRS_PISS_YUK_2 = [Dabu-piipii]
+SPELL_GRS_PISS_YUK_3 = [Senpuu-piipii]
+
+# --- Ice Spells (冰 - 原文为空) ---
+# SPELL_ICE_LOCK_FROST = []
+
+# --- Illusion Spells (幻术) ---
+SPELL_ILU_ECHO_ME = [Ko-pii]
+SPELL_ILU_GRAF = [Raku-gaki]
+SPELL_ILU_POOF = [Chen-ji]
+SPELL_ILU_POOF_2 = [Nari-tai]
+SPELL_ILU_POOF_ALLY = [Tomo-henshin]
+SPELL_ILU_SCOUT = [Kyoro-kyoro-kyoro]
+SPELL_ILU_SHRINK = [Chibi]
+
+# --- Telekinesis Spells (念力) ---
+SPELL_TEL_FLOAT_DOG = [Puka-puka]
+SPELL_TEL_TELE_BLAST = [Nen-riki]
+SPELL_TEL_TELE_FLOAT = [Fuyuu]
+SPELL_TEL_TELE_LOCK = [Kou-soku]
+
+# --- WIP / Special Spells (未完成/特殊) ---
+# SPELL_WIP_DETECT = []
+# SPELL_WIP_FOLLOWER = []
+# SPELL_WIP_GUIDANCE = []
+SPELL_WIP_MIND_CONTROL = [Sen-nou]
+SPELL_WIP_SPAWN_ANVIL = [Yappu-yappu]
+SPELL_WIP_SPAWN_DUCKY = [Dakku-dakku]
+SPELL_WIP_SPAWN_HAMMER = [Ton-ton]
+SPELL_WIP_SPAWN_PAN = [Tarai]
+
+# --- Revive Chants (复活咒语) ---
+REVIVE_CHANT_1 = [Koopasu]
+REVIVE_CHANT_2 = [Rifuto]
+REVIVE_CHANT_3 = [Ruumen]
+REVIVE_CHANT_4 = [Bijon]
+REVIVE_CHANT_5 = [Anima]
+REVIVE_CHANT_6 = [Viita]
+
+# --- Door Puzzle Words (解谜词汇) ---
+DOOR_PUZZLE_WORD_1 = [Yappu]
+DOOR_PUZZLE_WORD_2 = [Dabu]
+DOOR_PUZZLE_WORD_3 = [Rakkusu]
+DOOR_PUZZLE_WORD_4 = [Asutoraru]
+DOOR_PUZZLE_WORD_5 = [Bijon]
+DOOR_PUZZLE_WORD_6 = [Chii]
+DOOR_PUZZLE_WORD_7 = [Aizu]
+DOOR_PUZZLE_WORD_8 = [Fisshu]
+DOOR_PUZZLE_WORD_9 = [Rifuto]
+DOOR_PUZZLE_WORD_10 = [Ringu]
+DOOR_PUZZLE_WORD_11 = [Gurabu]
+DOOR_PUZZLE_WORD_12 = [Bingu]
+DOOR_PUZZLE_WORD_13 = [Ruumen]
+DOOR_PUZZLE_WORD_14 = [Furooto]
+DOOR_PUZZLE_WORD_15 = [Yakku]
+DOOR_PUZZLE_WORD_16 = [Koopasu]
+DOOR_PUZZLE_WORD_17 = [Ana]
+DOOR_PUZZLE_WORD_18 = [Viita]
+DOOR_PUZZLE_WORD_19 = [Anima]
+DOOR_PUZZLE_WORD_20 = [Pisu]
+
+# --- NPCs / Enemies (NPC/敌人) ---
+NPC_US_ENEMY_1 = [Mon-chamu-chamu]
+# NPC_US_ENEMY_2 = []
+NPC_US_ENEMY_3 = [Toka-poka-wa]
+NPC_US_ENEMY_4 = [Hai-pon-pon]
+NPC_US_ENEMY_5 = [Ribi-robo-raba]
+NPC_US_ENEMY_6 = [Tappu-tappu]
+NPC_US_ENEMY_7 = [Moka-toka]
+NPC_US_ENEMY_8 = [Bora-bora-bora]
+NPC_US_ENEMY_9 = [Kata-gura-gura]
+NPC_US_ENEMY_10 = [Pepe-ribi-tappu]
+
+# --- Player Commands (玩家指令) ---
+PLAYER_COMMAND_GOOD_BOY = [Yoshi-yoshi]

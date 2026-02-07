@@ -17,10 +17,19 @@ if (Test-Path $csPath) {
 $zipName = "acpass-YapYapRomajiDisplay-$ver.zip"
 $zipPath = Join-Path $TargetDir $zipName
 
+# Handle README renaming: ModREADME.md -> README.md in the zip
+$readmeSrc = Join-Path $ProjectDir "ModREADME.md"
+$readmeDest = Join-Path $TargetDir "README.md"
+if (Test-Path $readmeSrc) {
+    Copy-Item -Path $readmeSrc -Destination $readmeDest -Force
+}
+
 $files = @(
     $TargetPath,
     (Join-Path $ProjectDir "manifest.json"),
-    (Join-Path $ProjectDir "icon.png")
+    (Join-Path $ProjectDir "icon.png"),
+    (Join-Path $ProjectDir "romaji_mapping.txt"),
+    $readmeDest
 )
 # Filter existing files
 $validFiles = $files | Where-Object { Test-Path $_ }

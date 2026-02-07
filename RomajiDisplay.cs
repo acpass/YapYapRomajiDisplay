@@ -38,11 +38,32 @@ public static class RomajiConfigManager
     public static void LoadConfig()
     {
         _romajiCache.Clear();
-        // 如果文件不存在，创建一个带说明的默认文件
+        // 如果文件不存在，尝试从插件目录复制，如果也没有则创建默认文件
         if (!File.Exists(ConfigPath))
         {
-            CreateDefaultConfig();
-            return;
+            bool copied = false;
+            try
+            {
+                // 获取当前 DLL 所在目录
+                string pluginDir = Path.GetDirectoryName(typeof(RomajiDisplay).Assembly.Location);
+                string sourcePath = Path.Combine(pluginDir, "romaji_mapping.txt");
+                if (File.Exists(sourcePath))
+                {
+                    File.Copy(sourcePath, ConfigPath);
+                    Debug.Log($"[RomajiDisplay] 已从插件目录复制配置文件到: {ConfigPath}");
+                    copied = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError($"[RomajiDisplay] 复制配置文件出错: {ex.Message}");
+            }
+
+            if (!copied)
+            {
+                CreateDefaultConfig();
+                return;
+            }
         }
         try
         {
