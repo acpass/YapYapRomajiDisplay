@@ -79,6 +79,12 @@ public static class RomajiConfigManager
         }
         return null;
     }
+
+    public static string FormatRomaji(string romaji)
+    {
+        return $"<size=65%><color=#FFD700>{romaji}</color></size>";
+    }
+
     private static void CreateDefaultConfig()
     {
         try
@@ -140,7 +146,7 @@ public class WheelElementPatch
         // 如果想调试，取消下面这行的注释：
         // if (string.IsNullOrEmpty(romaji)) romaji = $"[{key}??]";
         if (string.IsNullOrEmpty(romaji)) return;
-        string romajiText = $"<size=65%><color=#FFD700>{romaji}</color></size>";
+        string romajiText = RomajiConfigManager.FormatRomaji(romaji);
         if (_cooldownRegex.IsMatch(title))
         {
             title = _cooldownRegex.Replace(title, " " + romajiText + "$1");
@@ -151,3 +157,152 @@ public class WheelElementPatch
         }
     }
  }
+
+// ----------------------------------------------------------------
+// 4. 新增接口 Patch
+// ----------------------------------------------------------------
+
+[HarmonyPatch(typeof(YAPYAP.ReviveChant), "GetLocalisedVoiceCommandKey", new Type[] { typeof(string) })]
+public class ReviveChantPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(string __0, ref string __result)
+    {
+        // __0 是 key 参数
+        string romaji = RomajiConfigManager.GetValue(__0);
+        if (!string.IsNullOrEmpty(romaji))
+        {
+            __result += " " + RomajiConfigManager.FormatRomaji(romaji);
+        }
+    }
+}
+
+[HarmonyPatch(typeof(YAPYAP.ReviveSpell), "GetLocalisedVoiceCommandKey", new Type[] { typeof(string) })]
+public class ReviveSpellPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(string __0, ref string __result)
+    {
+        string romaji = RomajiConfigManager.GetValue(__0);
+        if (!string.IsNullOrEmpty(romaji))
+        {
+            __result += " " + RomajiConfigManager.FormatRomaji(romaji);
+        }
+    }
+}
+
+[HarmonyPatch(typeof(YAPYAP.TradeSpell), "TryGetTradeWord")]
+public class TradeSpellPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(YAPYAP.TradeSpell __instance, ref bool __result, object[] __args)
+    {
+        // 如果成功获取到 TradeWord
+        if (__result)
+        {
+            // __args[0] 应该是 out string
+            if (__args.Length > 0 && __args[0] is string original)
+            {
+                string romaji = RomajiConfigManager.GetValue("SPELL_ARC_TRADE_2");
+                if (!string.IsNullOrEmpty(romaji))
+                {
+                    // 修改 out 参数
+                    __args[0] = original + " " + RomajiConfigManager.FormatRomaji(romaji);
+                }
+            }
+        }
+    }
+}
+
+[HarmonyPatch(typeof(YAPYAP.UpdraftSpell), "TryGetJumpWord")]
+public class UpdraftSpellPatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(YAPYAP.UpdraftSpell __instance, ref bool __result, object[] __args)
+    {
+        if (__result)
+        {
+            if (__args.Length > 0 && __args[0] is string original)
+            {
+                string romaji = RomajiConfigManager.GetValue("SPELL_BAS_UPDOG");
+                if (!string.IsNullOrEmpty(romaji))
+                {
+                    __args[0] = original + " " + RomajiConfigManager.FormatRomaji(romaji);
+                }
+            }
+        }
+    }
+}
+
+// Ensure we don't use typeof(XiLanHuaPuzzle) directly if it causes missing reference errors related to Mirror.
+// Using string-based patch definition.
+[HarmonyPatch("YAPYAP.XiLanHuaPuzzle", "UpdateLocalizedWords")]
+public class XiLanHuaPuzzlePatch
+{
+    [HarmonyPostfix]
+    public static void Postfix(object __instance)
+    {
+        // 1. 获取私有的 symbolWords 数组
+        var trv = Traverse.Create(__instance);
+        var symbolWords = trv.Field("symbolWords").GetValue() as Array;
+        
+        // 2. 获取 worldSpaceXiLanHuaSigns 数组
+        var signs = trv.Field("worldSpaceXiLanHuaSigns").GetValue() as GameObject[];
+        
+        if (symbolWords == null) return;
+
+        for (int i = 0; i < symbolWords.Length; i++)
+        {
+            object swObj = symbolWords.GetValue(i);
+            if (swObj == null) continue;
+
+            var swTrv = Traverse.Create(swObj);
+            string key = swTrv.Field("commandKey").GetValue<string>();
+            string word = swTrv.Field("word").GetValue<string>();
+
+            if (string.IsNullOrEmpty(key) || string.IsNullOrEmpty(word)) continue;
+
+            string romaji = RomajiConfigManager.GetValue(key);
+            if (!string.IsNullOrEmpty(romaji))
+            {
+                string romajiText = RomajiConfigManager.FormatRomaji(romaji);
+                // 防止重复追加
+                if (!word.Contains(romajiText))
+                {
+                    string newWord = word + " " + romajiText;
+                    
+                    // A. 更新 SymbolWord 数据 (内存中)
+                    swTrv.Field("word").SetValue(newWord);
+
+                    // B. 更新已经在场景中生成的 Sign (UI)
+                    if (signs != null && i < signs.Length && signs[i] != null)
+                    {
+                        var signObj = signs[i];
+                        if (signObj == null) continue;
+
+                        // 获取 WorldSpaceXiLanHuaSign 组件
+                        // 使用 string 防止类型引用问题
+                        var signComp = signObj.GetComponent("WorldSpaceXiLanHuaSign");
+                        if (signComp != null)
+                        {
+                            // 访问 wordText 字段 (TMP_Text)
+                            var signCompTrv = Traverse.Create(signComp);
+                            var tmproObj = signCompTrv.Field("wordText").GetValue();
+                            
+                            // 尝试设置 text 属性 (使用 Reflection 防止 Missing TMPro 引用)
+                            if (tmproObj != null)
+                            {
+                                Traverse.Create(tmproObj).Property("text").SetValue(newWord);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 注意: UserCode_CmdTryWords__String 是 Server 端逻辑 (Command)，负责判定输赢和广播 RPC。
+// 修改它会导致发送给所有客户端的字符串发生变化。
+// 作为一个显示 Mod，我们只应该修改本地显示 (UpdateLocalizedWords) 或者接收端的显示逻辑。
+// UpdateLocalizedWords 已经处理了场景中固定显示的词。
