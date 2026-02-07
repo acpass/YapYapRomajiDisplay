@@ -77,7 +77,10 @@
   <ItemGroup>
     <None Include="build_zip.ps1" />
     <None Include="Directory.Build.targets" />
+    <None Include="GamePath.props" />
+    <None Include="manifest.json" />
     <None Include="ModREADME.md" />
+    <None Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

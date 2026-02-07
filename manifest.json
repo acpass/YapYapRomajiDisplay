@@ -1,9 +1,9 @@
 {
     "name": "YapYapRomaji",
     "description": "Display Romaji for spells",
-    "version_number": "1.0.0",
+    "version_number": "1.0.1",
     "dependencies": [
         "BepInEx-BepInExPack-5.4.2304"
     ],
-    "website_url": "github.com/acpass/YapYapRomajiDisplay"
+    "website_url": "https://github.com/acpass/YapYapRomajiDisplay"
 }

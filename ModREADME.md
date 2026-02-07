@@ -1,41 +1,99 @@
 # YapYap Romaji Display
 
-´Ë Mod ¿ÉÒÔÔÚÓÎÏ·ÖĞÏÔÊ¾ÖäÓïºÍÎïÆ·µÄÂŞÂíÒôÌáÊ¾£¬°ïÖú²»ÊìÏ¤¼ÙÃûµÄÍæ¼Ò¿ìËÙ¼ÇÒäºÍÊäÈë¡£
+[English](#english) | [ä¸­æ–‡](#chinese)
 
-## ¹¦ÄÜ½éÉÜ
-- **·¨ÊõÂÖÅÌ (Spell Wheel)**: ÔÚÑ¡Ôñ·¨ÊõÊ±£¬±êÌâÅÔ»áÏÔÊ¾¶ÔÓ¦µÄÂŞÂíÒô¡£
-- **¸´»î/½»Ò× (Revive/Trade)**: ÔÚÏà¹Ø½çÃæÏÔÊ¾ÂŞÂíÒô¡£
-- **ÈÈÖØÔØ**: ĞŞ¸ÄÅäÖÃÎÄ¼şºó£¬ÔÚÓÎÏ·ÖĞ°´ **F9** ¼´¿ÉÁ¢¼´ÉúĞ§£¬ÎŞĞèÖØÆôÓÎÏ·¡£
+<div id="english"></div>
 
-## °²×°ËµÃ÷
-1. È·±£ÒÑ°²×° **BepInEx** ¿ò¼Ü¡£
-2. ½«Ñ¹Ëõ°üÄÚµÄÒÔÏÂÎÄ¼ş·ÅÈëÓÎÏ·¸ùÄ¿Â¼µÄ `BepInEx/plugins/RomajiDisplay` ÎÄ¼ş¼ĞÖĞ£º
+This mod displays Romaji hints for spells and items in-game, helping players unfamiliar with Kana to memorize and input commands quickly.
+
+## Features
+- **Spell Wheel**: Displays corresponding Romaji next to the title when selecting spells.
+- **Revive/Trade**: Displays Romaji in relevant interfaces.
+- **Hot Reload**: Press **F9** in-game to apply configuration changes immediately without restarting.
+
+## Installation
+1. Ensure **BepInEx** is installed.
+2. Place the following files from the zip into the `BepInEx/plugins/RomajiDisplay` folder in your game directory:
    - `RomajiDisplay.dll`
    - `romaji_mapping.txt`
 
-## ÅäÖÃÎÄ¼ş
-ÅäÖÃÎÄ¼şÎ»ÓÚ `BepInEx/config/romaji_mapping.txt`¡£
-- Ê×´ÎÔËĞĞÊ±£¬Mod »á×Ô¶¯½« `plugins` Ä¿Â¼ÏÂµÄÄ¬ÈÏÅäÖÃÎÄ¼ş¸´ÖÆµ½ `config` Ä¿Â¼£¨Èç¹û config Ä¿Â¼ÏÂ²»´æÔÚ¸ÃÎÄ¼ş£©¡£
-- Èç¹ûÁ½¸öµØ·½¶¼Ã»ÓĞ£¬Mod »áÉú³ÉÒ»¸ö¿Õ°×µÄÄ¬ÈÏÄ£°å¡£
+## Configuration
+The configuration file is located at `BepInEx/config/romaji_mapping.txt`.
+- On first run, the Mod will automatically copy the default config from the `plugins` directory to the `config` directory (if it doesn't exist).
+- If neither exists, a blank default template will be generated.
 
-### ×Ô¶¨ÒåĞŞ¸Ä
-Äã¿ÉÒÔÖ±½Ó±à¼­ `BepInEx/config/romaji_mapping.txt` ÎÄ¼şÀ´×Ô¶¨ÒåÏÔÊ¾µÄÂŞÂíÒô¡£
+### Customization
+You can directly edit `BepInEx/config/romaji_mapping.txt` to customize the displayed Romaji.
 
-**¸ñÊ½ËµÃ÷**£º
-- Ê¹ÓÃ `Key = Value` µÄ¸ñÊ½¡£
-- `Key`: ÓÎÏ·ÄÚ²¿µÄÓïÒôÖ¸Áî¼üÃû£¨Èç `SPELL_ARC_FIRE_1`£©¡£
-- `Value`: ÄãÏëÒªÏÔÊ¾µÄÎÄ±¾£¨Èç `[FA-I-YA]`£©¡£
-- Ö§³Ö `#` ¿ªÍ·µÄ×¢ÊÍĞĞ¡£
+**Format**:
+- Use `Key = Value` format.
+- `Key`: Internal voice command key (e.g., `SPELL_ARC_FIRE_1`).
+- `Value`: The text you want to display (e.g., `[FA-I-YA]`).
+- Lines starting with `#` are comments.
 
-**Ê¾Àı**£º
+**Example**:
 ```ini
-# ÕâÊÇÒ»¸ö×¢ÊÍ
+# This is a comment
 SPELL_ARC_FIRE_1 = [FA-I-YA]
 SPELL_BAS_JUMP_1 = [JUMP]
 ```
 
-## ³£¼ûÎÊÌâ
-- **Q: ĞŞ¸ÄÁËÅäÖÃÃ»ÓĞ±ä»¯£¿**
-  - A: È·±£ĞŞ¸ÄµÄÊÇ `BepInEx/config` Ä¿Â¼ÏÂµÄÎÄ¼ş£¬²¢°´ F9 Ë¢ĞÂ¡£
-- **Q: ÏÔÊ¾ÂÒÂë£¿**
-  - A: ÅäÖÃÎÄ¼şÇëÊ¹ÓÃ UTF-8 ±àÂë±£´æ¡£
+## FAQ
+- **Q: Config changes not applying?**
+  - A: Ensure you are editing the file in `BepInEx/config` and press F9 to refresh.
+- **Q: Displaying garbage characters?**
+  - A: Please save the configuration file with UTF-8 encoding.
+
+## Screenshot
+
+![Romaji Display](./assets/screenshot.png)
+
+---
+
+<div id="chinese"></div>
+
+# YapYap Romaji Display (ä¸­æ–‡è¯´æ˜)
+
+æ­¤ Mod å¯ä»¥åœ¨æ¸¸æˆä¸­æ˜¾ç¤ºå’’è¯­å’Œç‰©å“çš„ç½—é©¬éŸ³æç¤ºï¼Œå¸®åŠ©ä¸ç†Ÿæ‚‰å‡åçš„ç©å®¶å¿«é€Ÿè®°å¿†å’Œè¾“å…¥ã€‚
+
+## åŠŸèƒ½ä»‹ç»
+- **æ³•æœ¯è½®ç›˜ (Spell Wheel)**: åœ¨é€‰æ‹©æ³•æœ¯æ—¶ï¼Œæ ‡é¢˜æ—ä¼šæ˜¾ç¤ºå¯¹åº”çš„ç½—é©¬éŸ³ã€‚
+- **å¤æ´»/äº¤æ˜“ (Revive/Trade)**: åœ¨ç›¸å…³ç•Œé¢æ˜¾ç¤ºç½—é©¬éŸ³ã€‚
+- **çƒ­é‡è½½**: ä¿®æ”¹é…ç½®æ–‡ä»¶åï¼Œåœ¨æ¸¸æˆä¸­æŒ‰ **F9** å³å¯ç«‹å³ç”Ÿæ•ˆï¼Œæ— éœ€é‡å¯æ¸¸æˆã€‚
+
+## å®‰è£…è¯´æ˜
+1. ç¡®ä¿å·²å®‰è£… **BepInEx** æ¡†æ¶ã€‚
+2. å°†å‹ç¼©åŒ…å†…çš„ä»¥ä¸‹æ–‡ä»¶æ”¾å…¥æ¸¸æˆæ ¹ç›®å½•çš„ `BepInEx/plugins/RomajiDisplay` æ–‡ä»¶å¤¹ä¸­ï¼š
+   - `RomajiDisplay.dll`
+   - `romaji_mapping.txt`
+
+## é…ç½®æ–‡ä»¶
+é…ç½®æ–‡ä»¶ä½äº `BepInEx/config/romaji_mapping.txt`ã€‚
+- é¦–æ¬¡è¿è¡Œæ—¶ï¼ŒMod ä¼šè‡ªåŠ¨å°† `plugins` ç›®å½•ä¸‹çš„é»˜è®¤é…ç½®æ–‡ä»¶å¤åˆ¶åˆ° `config` ç›®å½•ï¼ˆå¦‚æœ config ç›®å½•ä¸‹ä¸å­˜åœ¨è¯¥æ–‡ä»¶ï¼‰ã€‚
+- å¦‚æœä¸¤ä¸ªåœ°æ–¹éƒ½æ²¡æœ‰ï¼ŒMod ä¼šç”Ÿæˆä¸€ä¸ªç©ºç™½çš„é»˜è®¤æ¨¡æ¿ã€‚
+
+### è‡ªå®šä¹‰ä¿®æ”¹
+ä½ å¯ä»¥ç›´æ¥ç¼–è¾‘ `BepInEx/config/romaji_mapping.txt` æ–‡ä»¶æ¥è‡ªå®šä¹‰æ˜¾ç¤ºçš„ç½—é©¬éŸ³ã€‚
+
+**æ ¼å¼è¯´æ˜**ï¼š
+- ä½¿ç”¨ `Key = Value` çš„æ ¼å¼ã€‚
+- `Key`: æ¸¸æˆå†…éƒ¨çš„è¯­éŸ³æŒ‡ä»¤é”®åï¼ˆå¦‚ `SPELL_ARC_FIRE_1`ï¼‰ã€‚
+- `Value`: ä½ æƒ³è¦æ˜¾ç¤ºçš„æ–‡æœ¬ï¼ˆå¦‚ `[FA-I-YA]`ï¼‰ã€‚
+- æ”¯æŒ `#` å¼€å¤´çš„æ³¨é‡Šè¡Œã€‚
+
+**ç¤ºä¾‹**ï¼š
+```ini
+# è¿™æ˜¯ä¸€ä¸ªæ³¨é‡Š
+SPELL_ARC_FIRE_1 = [FA-I-YA]
+SPELL_BAS_JUMP_1 = [JUMP]
+```
+
+## å¸¸è§é—®é¢˜
+- **Q: ä¿®æ”¹äº†é…ç½®æ²¡æœ‰å˜åŒ–ï¼Ÿ**
+  - A: ç¡®ä¿ä¿®æ”¹çš„æ˜¯ `BepInEx/config` ç›®å½•ä¸‹çš„æ–‡ä»¶ï¼Œå¹¶æŒ‰ F9 åˆ·æ–°ã€‚
+- **Q: æ˜¾ç¤ºä¹±ç ï¼Ÿ**
+  - A: é…ç½®æ–‡ä»¶è¯·ä½¿ç”¨ UTF-8 ç¼–ç ä¿å­˜ã€‚
+
+## ScreenShot
+
+[æ³•æœ¯è½®ç›˜æ˜¾ç¤ºç½—é©¬éŸ³](./assets/screenshot.png)
