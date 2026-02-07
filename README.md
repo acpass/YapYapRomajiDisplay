@@ -48,7 +48,7 @@ SPELL_BAS_JUMP_1 = [JUMP]
 
 ## Screenshot
 
-![Romaji Display](./assets/screenshot.png)
+![Romaji Display](https://github.com/acpass/YapYapRomajiDisplay/blob/master/assets/screenshot.png)
 
 ---
 
@@ -98,7 +98,7 @@ SPELL_BAS_JUMP_1 = [JUMP]
 
 ## ScreenShot
 
-![法术轮盘显示罗马音](./assets/screenshot.png)
+![法术轮盘显示罗马音](https://github.com/acpass/YapYapRomajiDisplay/blob/master/assets/screenshot.png)
 
 ## How to Build
 

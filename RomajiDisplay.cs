@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 
 // Format: ("Unique ID", "Display Name", "Version")
-[BepInPlugin("acpass.romajidisplay", "RomajiDisplay", "1.0.1")]
+[BepInPlugin("acpass.romajidisplay", "RomajiDisplay", "1.0.2")]
 public class RomajiDisplay : BaseUnityPlugin
 {
     // Awake is called when the mod is first loaded by the game.
