@@ -236,7 +236,7 @@ public class UpdraftSpellPatch
 
 // Ensure we don't use typeof(XiLanHuaPuzzle) directly if it causes missing reference errors related to Mirror.
 // Using string-based patch definition.
-[HarmonyPatch("YAPYAP.XiLanHuaPuzzle", "UpdateLocalizedWords")]
+[HarmonyPatch("YAPYAP.XiLanHuaPuzzle, Assembly-CSharp", "UpdateLocalizedWords")]
 public class XiLanHuaPuzzlePatch
 {
     [HarmonyPostfix]

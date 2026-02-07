@@ -1,0 +1,6 @@
+<Project>
+  <Target Name="PostBuildZip" AfterTargets="Build">
+    <Message Text="Packaging build artifacts..." Importance="high" />
+    <Exec Command="powershell -ExecutionPolicy Bypass -File &quot;$(ProjectDir)build_zip.ps1&quot; -TargetDir &quot;$(TargetDir.TrimEnd('\'))&quot; -TargetPath &quot;$(TargetPath)&quot; -ProjectDir &quot;$(ProjectDir.TrimEnd('\'))&quot;" />
+  </Target>
+</Project>
