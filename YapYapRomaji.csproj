@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="build_zip.ps1" />
+    <None Include="CHANGELOG.md" />
     <None Include="Directory.Build.targets" />
     <None Include="GamePath.props" />
     <None Include="manifest.json" />

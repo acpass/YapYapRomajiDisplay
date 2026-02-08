@@ -1,4 +1,4 @@
-param(
+﻿param(
     [string]$TargetDir, 
     [string]$TargetPath, 
     [string]$ProjectDir
@@ -55,6 +55,12 @@ if (Test-Path $assetsSrc) {
 $iconSrc = Join-Path $assetsSrc "icon.png"
 if (Test-Path $iconSrc) {
     Copy-Item -Path $iconSrc -Destination (Join-Path $stagingDir "icon.png")
+}
+
+# 7. CHANGELOG.md
+$readmeSrc = Join-Path $ProjectDir "CHANGELOG.md"
+if (Test-Path $readmeSrc) {
+    Copy-Item -Path $readmeSrc -Destination (Join-Path $stagingDir "CHANGELOG.md")
 }
 
 Write-Host "Creating zip package: $zipPath"

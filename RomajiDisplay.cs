@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 
 // Format: ("Unique ID", "Display Name", "Version")
-[BepInPlugin("acpass.romajidisplay", "RomajiDisplay", "1.1.2")]
+[BepInPlugin("acpass.romajidisplay", "RomajiDisplay", "1.1.3")]
 public class RomajiDisplay : BaseUnityPlugin
 {
     // Awake is called when the mod is first loaded by the game.
@@ -228,26 +228,6 @@ public class TradeSpellPatch
                 if (!string.IsNullOrEmpty(romaji))
                 {
                     // 修改 out 参数
-                    __args[0] = original + " " + RomajiConfigManager.FormatRomaji(romaji);
-                }
-            }
-        }
-    }
-}
-
-[HarmonyPatch(typeof(YAPYAP.UpdraftSpell), "TryGetJumpWord")]
-public class UpdraftSpellPatch
-{
-    [HarmonyPostfix]
-    public static void Postfix(YAPYAP.UpdraftSpell __instance, ref bool __result, object[] __args)
-    {
-        if (__result)
-        {
-            if (__args.Length > 0 && __args[0] is string original)
-            {
-                string romaji = RomajiConfigManager.GetValue("SPELL_BAS_UPDOG");
-                if (!string.IsNullOrEmpty(romaji))
-                {
                     __args[0] = original + " " + RomajiConfigManager.FormatRomaji(romaji);
                 }
             }
